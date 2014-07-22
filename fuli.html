@@ -1,0 +1,65 @@
+<html>
+    <head>
+		<meta charset="UTF-8" />
+        <title>Testing Fartscroll.js</title>
+		<script src="js/jquery-1.11.1.js" ></script>
+        <script src="js/fartscroll.js"></script>
+        <script>
+        $(document).ready(function() {
+            // Ensure the page always has more scrolling
+            $(document).scroll(function() {
+				
+                while ((window.pageYOffset + window.innerHeight) >= $(this).height() - (window.innerHeight / 2)) {
+                    $('ul').append('<li>继续</li>');
+                }/*
+				while(window.pageYOffset > $(this).height()-window.innerHeight*2) {
+					$('ul').append('<li></li>');
+				}*/
+            }).scroll();
+
+            fartscroll(400);
+        });
+        </script>
+		<style>
+			body {
+				background-image:url("images/bg.png");
+			}
+			ul {
+				list-style:none;
+			}
+			li {
+				height:400px;
+				width:600px;
+				margin:100px auto;
+				text-align:center;
+				font-family:Cambria,​Palatino,​,​Georgia,​serif;
+				font-size:40px;
+				color:#498ea5;
+			}
+			ul li:first-child p{
+				font-size:15px;
+				color:#aaa;
+				font-style:italic;
+				text-shadow:1px 1px 1px rgba(255, 255, 255, 0.7);
+			}
+		</style>
+    </head>
+    <body>
+        <ul>
+            <li>
+				PLEASE SCROLL DOWN
+				<p>页面底部有福利哦！</p>
+				<p>你懂的！</p>
+			</li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li>继续</li>
+            <li></li>
+            <li></li>
+            <li>继续</li>
+            <li></li>
+        </ul>
+    </body>
+</html>
