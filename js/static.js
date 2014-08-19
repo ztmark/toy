@@ -6,46 +6,10 @@
 // 点击选项
 var bar,p;
 // 判断选择是否正确
-/*function check(a) {
-    //暂停进度条
-    clearInterval(bar);
-    clearInterval(p);
-
-    var ans = $('audio').data('name'); //获得正确答案
-    var op = $(a).text(); //获得所选项
-    var point = +$('.pointsDelta').text(); //获得当时分数
-    var scoreNode = $('#score').find('span');
-    var score = +scoreNode.text();//得到当前的总分数
-    if(ans === op) { //判断是否正确
-        //弹出正确对话框
-        $('#correct-box').css('display','inherit');
-        $('.label-success').text('+' +point+'pts');
-        scoreNode.text(score+point);
-        if(score+point > 0) { //分数大于0 设置其为绿色
-            scoreNode.removeClass('negative');
-        }
-    } else {
-        //弹出错误对话框
-        $('#wrong-box').css('display','inherit');
-        $('.label-error').text('-'+(150-point)+'pts');
-        scoreNode.text(score-150+point);
-        if(score-150+point < 0) { //分数小于0， 设置其为红色
-            scoreNode.addClass('negative');
-        }
-    }
-
-    // 为了 在弹出对话框后，防止鼠标与其他页面元素进行交互 设置背景图片
-    $('.fancybox-overlay').css('display','block');
-
-}*/
-
-
 function check(a) {
     //暂停进度条
     clearInterval(bar);
     clearInterval(p);
-
-
 
     var ans = $('audio').data('name'); //获得正确答案
     var op = $(a).text(); //获得所选项
@@ -74,6 +38,7 @@ function check(a) {
     $('.fancybox-overlay').css('display','block');
 
 }
+
 
 // progressbar
 $(document).ready(function(){
