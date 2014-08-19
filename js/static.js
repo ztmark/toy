@@ -47,7 +47,7 @@ function setData(){
         var tmp = Math.floor(Math.random()*songs.length);
         var cnu = false;
         for(var j=0; j<i; j++) {
-            if (tmp == ops[j]) {
+            if (songs[tmp] === ops[j]) {
                 cnu = true; break;
             }
         }
