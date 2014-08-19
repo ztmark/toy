@@ -4,7 +4,7 @@
 
 
 // 点击选项
-var bar,p;
+var bar ,p ;
 // 判断选择是否正确
 function check(a) {
     //暂停进度条
@@ -40,110 +40,80 @@ function check(a) {
 }
 
 
-// progressbar
-$(document).ready(function(){
-    var len = 400; //进度条长度
-    var point = 100;//分数
-    // 进度条缩短到0的时间应该与分数减少到0的时间差不多
-    //所以 400*30 约等于 100*130 因为有误差，所以不是绝对相等的，具体看效果
-    function setProgressBar() { // 设置进度条
-        bar = setInterval(function(){ //定时缩短进度条，每30毫秒，缩短1px
-            $('#choiceProgressBar').css('width',(len--)+'px');
-        },30);
-    }
-    function setPoint() { //设置分数
-        p = setInterval(function () { //定时减少分数，每130毫秒，分数减少1
-            point--;
-            var pd = $('.pointsDelta');
-            pd.text(point);
-            if (point <= 0) { //如果分数小于0了，则弹出错误对话框
-                clear();
+function setData(){
+    var ops =[];
+    var ans ;
+    for (var i=0; i<4; i++) {
+        var tmp = Math.floor(Math.random()*songs.length);
+        var cnu = false;
+        for(var j=0; j<i; j++) {
+            if (tmp == ops[j]) {
+                cnu = true; break;
             }
-        }, 130);
-    }
-    function clear() { //
-        clearInterval(bar);
-        clearInterval(p);
-        $('#wrong-box').css('display','inherit');
-        $('.label-error').text('-100pts');
-    }
-
-
-
-    function getData() {
-        //以Ajax方式向服务器取数据
-        $.ajax('test',{
-            type:'POST', //POST类型
-            dataType:'json',//设置服务器发送过来的数据为json格式
-            //contentType:'application/json',//设置发送给服务器的数据为json个数
-            data:{'isAjax':'true'},//发送给服务器的参数数据
-            success:function(response){//服务器成功返回数据时 执行的函数
-                var ops = response.ops; //服务器端传过来的选项数据
-                var ans = response.ans;// 服务器端传过来的正确答案
-                $('.box').css('display','none'); // 隐藏弹出框
-                var audio = $('#music');
-                audio.attr('src','music/'+ans.name+'.mp3');//设置歌曲
-                audio.data('name',ans.name); //给 data-name属性设置值
-                $('#box-ans').text(ans.name);// 给 wrong-box设置正确的答案
-                var options = $('.lead');
-                options.children().remove(); //清除原先的选项
-                $('.fancybox-overlay').css('display','none');//隐藏 阻止鼠标与页面进行交互的 图片
-                for(var i=0; i<ops.length; i++) {// 设置选项
-                    var opt = $('<a href="javascript:void(0)" onclick="check(this)" class="btn btn-block btn-lg btn-option"></a>');
-                    opt.append(ops[i].name);
-                    options.append(opt);
-                }
-                //重新设置进度条和分数
-                len = 400;
-                point = 100;
-                setProgressBar();
-                setPoint();
-            }
-        });
-    }
-
-
-    function setData(){
-        var ops =[];
-        var ans ;
-        for (var i=0; i<4; i++) {
-            var tmp = Math.floor(Math.random()*songs.length);
-            var cnu = false;
-            for(var j=0; j<i; j++) {
-                if (tmp == ops[j]) {
-                    cnu = true; break;
-                }
-            }
-            if(cnu) continue;
-            ops[i] = songs[tmp];
         }
-        ans = ops[Math.floor(Math.random()*4)];
-        $('.box').css('display','none'); // 隐藏弹出框
-        var audio = $('#music');
-        audio.attr('src','music/'+ans+'.mp3');//设置歌曲
-        audio.data('name',ans); //给 data-name属性设置值
-        $('#box-ans').text(ans);// 给 wrong-box设置正确的答案
-        var options = $('.lead');
-        options.children().remove(); //清除原先的选项
-        $('.fancybox-overlay').css('display','none');//隐藏 阻止鼠标与页面进行交互的 图片
-        for(var i=0; i<ops.length; i++) {// 设置选项
-            var opt = $('<a href="javascript:void(0)" onclick="check(this)" class="btn btn-block btn-lg btn-option"></a>');
-            opt.append(ops[i]);
-            options.append(opt);
-        }
-        //重新设置进度条和分数
-        len = 400;
-        point = 100;
-        setProgressBar();
-        setPoint();
+        if(cnu) continue;
+        ops[i] = songs[tmp];
     }
+    ans = ops[Math.floor(Math.random()*4)];
+    $('.box').css('display','none'); // 隐藏弹出框
+    var audio = $('#music');
+    audio.attr('src','music/'+ans+'.mp3');//设置歌曲
+    audio.data('name',ans); //给 data-name属性设置值
+    $('#box-ans').text(ans);// 给 wrong-box设置正确的答案
+    var options = $('.lead');
+    options.children().remove(); //清除原先的选项
+    $('.fancybox-overlay').css('display','none');//隐藏 阻止鼠标与页面进行交互的 图片
+    for(var i=0; i<ops.length; i++) {// 设置选项
+        var opt = $('<a href="javascript:void(0)" onclick="check(this)" class="btn btn-block btn-lg btn-option"></a>');
+        opt.append(ops[i]);
+        options.append(opt);
+    }
+    //重新设置进度条和分数
+    len = 400;
+    point = 100;
+
 
     setProgressBar();
     setPoint();
+}
+
+var len = 400; //进度条长度
+var point = 100;//分数
+// 进度条缩短到0的时间应该与分数减少到0的时间差不多
+//所以 400*30 约等于 100*130 因为有误差，所以不是绝对相等的，具体看效果
+function setProgressBar() { // 设置进度条
+    clearInterval(bar); //为了防止在下面的设置之前，清除前一次的设置，没有这句会出现，点击了选项，进度条还是走的情况
+    bar = setInterval(function(){ //定时缩短进度条，每30毫秒，缩短1px
+        $('#choiceProgressBar').css('width',(len--)+'px');
+    },30);
+
+}
+function setPoint() { //设置分数
+    clearInterval(p); //为了防止在下面的设置之前，清除前一次的设置，没有这句会出现，点击了选项，分数还是走的情况
+    p = setInterval(function () { //定时减少分数，每130毫秒，分数减少1
+        point--;
+        var pd = $('.pointsDelta');
+        pd.text(point);
+        if (point <= 0) { //如果分数小于0了，则弹出错误对话框
+            clear();
+        }
+    }, 130);
+
+}
+
+function clear() { //
+    clearInterval(bar);
+    clearInterval(p);
+    $('#wrong-box').css('display','inherit');
+    $('.label-error').text('-100pts');
+}
+
+// progressbar
+$(document).ready(function(){
+    setProgressBar();
+    setPoint();
     setData();//初始化选项
-    $('.nextSong').on('click',setData); //设置 下一首的 点击事件
-
-
-
-
+    //$('.nextSong').on('click',setData); //设置 下一首的 点击事件
 });
+
+
