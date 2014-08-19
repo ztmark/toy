@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+body {
+    background-color: #262626;
+}
+.btn-option {
+    background-color: #424242;
+    border-color: #424242;
+
+}
+a.btn-option:hover {
+    background-color: #222222;
+    border-color: #222222;
+}
+
+.box {
+    position: absolute;
+    left: 38%;
+    display: none;
+    z-index: 99;
+}
+

@@ -1,0 +1,126 @@
+<!--
+Created by IntelliJ IDEA.
+User: Mark
+Date: 2014/8/2
+Time: 14:36
+To change this template use File | Settings | File Templates.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>Music Test</title>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <link href="styles/bootstrap.min.css" rel="stylesheet">
+    <link href="styles/cover.css" rel="stylesheet">
+
+
+    <link type="text/css" rel="stylesheet" href="styles/jquery.fancybox.css" />
+    <link rel="stylesheet" href="styles/progress.css" />
+    <link type="text/css" rel="stylesheet" href="styles/box.css" />
+    <link type="text/css" rel="stylesheet" href="styles/main.css" />
+    <script type="text/javascript" src="js/songs.js" ></script>
+    <script type="text/javascript" src="js/static.js"></script>
+    <style type="text/css">
+        div#score {
+            color:#77B300;
+            font-size: 32px;
+        }
+        .negative {
+            color:#ff0000;
+        }
+    </style>
+</head>
+
+<body>
+<div class="site-wrapper">
+
+    <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+            <div class="masthead clearfix">
+                <div class="inner">
+                    <h3 class="masthead-brand">Music Test</h3>
+                    <ul class="nav masthead-nav">
+                        <li class="active"><a href="index.jsp">Home</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- correct box  -->
+            <div id="correct-box" class="box fancybox-wrap fancybox-desktop fancybox-type-inline fancybox-opened" tabindex="-1">
+                <div id="" class="fancybox-skin inner-box">
+                    <div class="fancybox-title fancybox-title-inside-wrap">
+                        <h1>
+                            <span class="text-success">答对啦!</span>
+                        </h1>
+                        <h2>
+                            恭喜你，得到<span class="label label-success"></span>
+                        </h2>
+                    </div>
+                    <div>
+                        <div id="" class="fancybox-title fancybox-title-inside-wrap fancybox-title-bottom">
+                            <button id=""  class="btn btn-primary btn-lg btn-block nextSong">下一首</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- wrong box -->
+            <div id="wrong-box" class="box fancybox-wrap fancybox-desktop fancybox-type-inline fancybox-opened" tabindex="-1">
+                <div id="" class="fancybox-skin inner-box">
+                    <div class="fancybox-title fancybox-title-inside-wrap">
+                        <h1>
+                            <span class="text-error">答错了!</span>
+                        </h1>
+                        <h2>
+                            这首歌的名字叫<strong id="box-ans"></strong>.
+                            <span class="label label-error"></span>
+                        </h2>
+                    </div>
+                    <!--<div class="fancybox-outer"> picture
+                        <div style="overflow: auto; width: 171px; height: 100px;" class="fancybox-inner">
+                            <img style="display: inline;" class="fancybox-image" src="images/22.gif">
+                        </div>
+                    </div>-->
+                    <div>
+                        <div id="" class="fancybox-title fancybox-title-inside-wrap fancybox-title-bottom">
+                            <button id="" class="btn btn-primary btn-lg btn-block nextSong">下一首</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 用来挡住页面的其他元素，以防止其与鼠标进行交互 -->
+            <div class="fancybox-overlay fancybox-overlay-fixed" style="width: auto; height: auto; display: none; opacity: 1;"></div>
+
+            <audio id="music" data-name="" src="music/" autoplay="autoplay" loop="loop"></audio>
+            <div id="score">目前得分 <span>0</span> pts</div>
+            <div class="inner cover">
+
+                <h2 class="cover-heading">这是哪首歌？</h2>
+                <!-- 进度条 -->
+                <div class="progress progress-striped active">
+                    <div id="choiceProgressBar" class="progress-bar progress-bar-success" style="width: 300px; overflow: hidden;">
+                        +<span class="pointsDelta"></span>pts
+                    </div>
+                </div>
+                <p class="lead">
+                </p>
+            </div>
+
+            <div class="mastfoot">
+                <div class="inner">
+                    <p>By Mark</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
+
