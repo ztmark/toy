@@ -113,7 +113,7 @@ $(document).ready(function(){
     setProgressBar();
     setPoint();
     setData();//初始化选项
-    //$('.nextSong').on('click',setData); //设置 下一首的 点击事件
+    $('.nextSong').on('click',setData); //设置 下一首的 点击事件
 });
 
 
