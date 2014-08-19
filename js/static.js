@@ -43,7 +43,7 @@ function check(a) {
 function setData(){
     var ops =[];
     var ans ;
-    for (var i=0; i<4; i++) {
+    for (var i=0; i<4; ) {
         var tmp = Math.floor(Math.random()*songs.length);
         var cnu = false;
         for(var j=0; j<i; j++) {
@@ -53,6 +53,7 @@ function setData(){
         }
         if(cnu) continue;
         ops[i] = songs[tmp];
+        i++;
     }
     ans = ops[Math.floor(Math.random()*4)];
     $('.box').css('display','none'); // 隐藏弹出框
