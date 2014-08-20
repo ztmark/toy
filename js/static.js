@@ -74,8 +74,13 @@ function setData(){
     point = 100;
 
 
-    setProgressBar();
-    setPoint();
+    //setProgressBar();
+    //setPoint();
+    //监听audio的播放事件，在音乐开始播放了再设置进度条
+    m.addEventListener("canplay",function(){
+        setProgressBar();
+        setPoint();
+    });
 }
 
 var len = 400; //进度条长度
