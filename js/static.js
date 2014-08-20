@@ -77,6 +77,7 @@ function setData(){
     //setProgressBar();
     //setPoint();
     //监听audio的播放事件，在音乐开始播放了再设置进度条
+    var m = document.getElementById("music");
     m.addEventListener("canplay",function(){
         setProgressBar();
         setPoint();
