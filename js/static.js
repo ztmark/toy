@@ -76,8 +76,9 @@ function setData(){
 
     //setProgressBar();
     //setPoint();
-    //将进度条设置满条
+    //将进度条设置满条,分数为满分
     $('#choiceProgressBar').css('width','400 px');
+    $('.pointsDelta').text(100);
     //监听audio的播放事件，在音乐开始播放了再设置进度条
     var m = document.getElementById("music");
     m.addEventListener("canplay",function(){
