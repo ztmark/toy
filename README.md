@@ -1,3 +1,3 @@
 
 # toy
-toy project
+[toy project](http://zhangteng-mark.github.io/toy/index.html)
