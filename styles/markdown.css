@@ -60,13 +60,13 @@ li ul, li ul {
 ul, ol {
     font-size: 14px;
     line-height: 20px;
-    max-width: 540px;
+    max-width: 960px;
 }
 
 p {
     font-size: 14px;
     line-height: 20px;
-    max-width: 540px;
+    max-width: 960px;
     margin-top: 3px;
 }
 
